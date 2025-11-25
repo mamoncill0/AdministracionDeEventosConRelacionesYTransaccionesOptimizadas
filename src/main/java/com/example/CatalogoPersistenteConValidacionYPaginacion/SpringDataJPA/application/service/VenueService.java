@@ -1,13 +1,12 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.service;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.application.service;
 
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.dto.VenueDTO;
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.entity.VenueEntity;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.infraestructura.adapters.in.dto.VenueDTO;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.entity.VenueEntity;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.DuplicateResourceException;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.ResourceNotFoundException;
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.repository.VenueRepository;
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.service.interfaces.IVenueService;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.repository.VenueRepository;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.application.service.interfaces.IVenueService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class VenueService implements IVenueService {
 
-    @Autowired
-    private VenueRepository repository;
+    private final VenueRepository venueRepository;
+
+    public VenueService(VenueRepository venueRepository) {
+        this.venueRepository = venueRepository;
+    }
 
     // -------------------------------------
     // CREATE
@@ -24,12 +26,12 @@ public class VenueService implements IVenueService {
     @Override
     public VenueDTO create(@Valid VenueDTO dto) throws DuplicateResourceException {
 
-        if (repository.existsByName(dto.getName())) {
+        if (venueRepository.existsByName(dto.getName())) {
             throw new DuplicateResourceException("Ya existe un venue con este nombre");
         }
 
         VenueEntity entity = toEntity(dto);
-        entity = repository.save(entity);
+        entity = venueRepository.save(entity);
 
         return toDTO(entity);
     }
@@ -39,7 +41,7 @@ public class VenueService implements IVenueService {
     // -------------------------------------
     @Override
     public Page<VenueDTO> findAll(Pageable pageable) {
-        return repository.findAll(pageable).map(this::toDTO);
+        return venueRepository.findAll(pageable).map(this::toDTO);
     }
 
     // -------------------------------------
@@ -47,7 +49,7 @@ public class VenueService implements IVenueService {
     // -------------------------------------
     @Override
     public VenueDTO findById(Integer id) throws ResourceNotFoundException {
-        return repository.findById(id)
+        return venueRepository.findById(id)
                 .map(this::toDTO)
                 .orElseThrow(() -> new ResourceNotFoundException("Venue no encontrado"));
     }
@@ -59,12 +61,12 @@ public class VenueService implements IVenueService {
     public VenueDTO update(Integer id, @Valid VenueDTO dto)
             throws ResourceNotFoundException, DuplicateResourceException {
 
-        VenueEntity existing = repository.findById(id)
+        VenueEntity existing = venueRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Venue no encontrado"));
 
         // Validación de nombre duplicado
         if (!existing.getName().equals(dto.getName()) &&
-                repository.existsByName(dto.getName())) {
+                venueRepository.existsByName(dto.getName())) {
 
             throw new DuplicateResourceException("Ya existe un venue con este nombre");
         }
@@ -74,7 +76,7 @@ public class VenueService implements IVenueService {
         existing.setAddress(dto.getAddress());
         existing.setCapacity(dto.getCapacity());
 
-        repository.save(existing);
+        venueRepository.save(existing);
 
         return toDTO(existing);
     }
@@ -85,11 +87,11 @@ public class VenueService implements IVenueService {
     @Override
     public void delete(Integer id) throws ResourceNotFoundException {
 
-        if (!repository.existsById(id)) {
+        if (venueRepository.findById(id).isEmpty()) {
             throw new ResourceNotFoundException("Venue no encontrado");
         }
 
-        repository.deleteById(id);
+        venueRepository.deleteById(id);
     }
 
     // -------------------------------------

@@ -1,6 +1,6 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.service.interfaces;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.service.interfaces;
 
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.dto.VenueDTO;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.dto.VenueDTO;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.DuplicateResourceException;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;

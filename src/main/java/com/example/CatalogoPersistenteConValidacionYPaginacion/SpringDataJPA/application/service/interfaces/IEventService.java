@@ -1,12 +1,11 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.service.interfaces;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.service.interfaces;
 
 
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.dto.EventDTO;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.dto.EventDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface IEventService {
     EventDTO create(EventDTO event);

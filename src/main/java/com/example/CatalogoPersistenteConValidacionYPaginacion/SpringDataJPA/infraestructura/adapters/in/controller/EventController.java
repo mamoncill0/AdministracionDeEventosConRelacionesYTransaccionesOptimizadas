@@ -1,10 +1,10 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.controller;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.infraestructura.adapters.in.controller;
 
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.dto.EventDTO;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.infraestructura.adapters.in.dto.EventDTO;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.BadRequestException;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.DuplicateResourceException;
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.exception.ResourceNotFoundException;
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.service.interfaces.IEventService;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.application.service.interfaces.IEventService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

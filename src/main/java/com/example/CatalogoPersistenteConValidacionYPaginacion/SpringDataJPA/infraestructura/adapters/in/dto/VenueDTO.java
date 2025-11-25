@@ -1,4 +1,4 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.dto;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.infraestructura.adapters.in.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
