@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class EventDTO {
@@ -16,11 +17,11 @@ public class EventDTO {
 
     @NotNull(message = "Start time is required")
     @Future(message = "Start time must be in the future")
-    private LocalDateTime startTime;
+    private Date startTime;
 
     @NotNull(message = "End time is required")
     @Future(message = "End time must be in the future")
-    private LocalDateTime endTime;
+    private Date endTime;
 
     private String description;
 

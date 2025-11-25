@@ -1,0 +1,13 @@
+    # Archivos de la base de datos H2
+    /data/
+
+    # Archivos generados por el build de Maven/Gradle
+    /target/
+    /build/
+
+    # Logs
+    *.log
+
+    # Archivos del IDE (IntelliJ)
+    .idea/
+    *.iml

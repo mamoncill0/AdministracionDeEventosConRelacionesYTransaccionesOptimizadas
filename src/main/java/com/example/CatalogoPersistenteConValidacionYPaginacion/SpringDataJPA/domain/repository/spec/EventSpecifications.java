@@ -1,4 +1,4 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.repository.spec;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.repository.spec;
 
 import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.entity.EventEntity;
 import org.springframework.data.jpa.domain.Specification;

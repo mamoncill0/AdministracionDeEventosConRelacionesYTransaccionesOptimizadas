@@ -1,7 +1,7 @@
-package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.service.interfaces;
+package com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.application.service.interfaces;
 
 
-import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.domain.dto.EventDTO;
+import com.example.CatalogoPersistenteConValidacionYPaginacion.SpringDataJPA.infraestructura.adapters.in.dto.EventDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
